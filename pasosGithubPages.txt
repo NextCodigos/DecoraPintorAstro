@@ -1,0 +1,68 @@
+Pasos para publicar en GitHub Pages (DecoraPintorAstro)
+
+Prerequisitos:
+- Tener Node.js y Git instalados.
+- Tener el repo en GitHub: https://github.com/NextCodigos/DecoraPintorAstro
+- Asegurarse de que `astro.config.mjs` tiene los valores correctos:
+  site: "https://NextCodigos.github.io"
+  base: "/DecoraPintorAstro/"
+
+Opción A — Despliegue sencillo (gh-pages) ✅
+1. Instala la dependencia:
+   npm install --save-dev gh-pages
+
+2. Añade un script en `package.json` (si no existe):
+   "scripts": {
+     "build": "astro build",
+     "deploy": "gh-pages -d dist -b gh-pages"
+   }
+
+3. Construye y despliega:
+   npm run build
+   npm run deploy
+
+4. Espera unos minutos y visita:
+   https://NextCodigos.github.io/DecoraPintorAstro/
+
+Opción B — Despliegue automático con GitHub Actions (recomendado) 🔁
+1. Crea un workflow: `.github/workflows/deploy.yml` con un contenido como el siguiente:
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./dist
+      - uses: actions/deploy-pages@v1
+
+2. Commit y push del workflow. GitHub Actions construirá y desplegará automáticamente cuando pushes a `main`.
+
+3. En GitHub > Settings > Pages, verifica que la fuente de publicación esté configurada para usar "GitHub Actions" (si es necesario).
+
+CNAME (dominio personalizado):
+- Si usas un dominio propio, crea `public/CNAME` con el dominio (ej: example.com). Luego agrega el CNAME al repo y configura el dominio en GitHub Pages.
+
+Notas y resolución de problemas:
+- Si ves 404, revisa `base` en `astro.config.mjs` y que los activos se sirvan desde la ruta correcta.
+- Si usas la rama `gh-pages`, revisa en Settings > Pages que la fuente esté en `gh-pages` rama / root.
+- Para cache o contenido viejo, limpia la caché del navegador o espera unos minutos tras el deploy.
+
+Si quieres, puedo:
+- Añadir el workflow `.github/workflows/deploy.yml` automáticamente.
+- Crear el archivo `public/CNAME` si tienes un dominio.
+
+Fin de las instrucciones. ¡Listo para desplegar! 🎯
