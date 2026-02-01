@@ -1,0 +1,102 @@
+---
+
+---
+
+<section class="hero" id="inicio">
+    <div class="hero-content">
+        <p class="hero-badge animate-fade">Desde 2001</p>
+        <h1 class="animate-fade" style="animation-delay: 0.1s;">
+            25 AÑOS NOS AVALAN
+        </h1>
+        <p class="hero-description animate-fade" style="animation-delay: 0.2s;">
+            Especialistas en decoración de interiores y revestimientos para
+            fachadas. Calidad, precio y experiencia a su servicio.
+        </p>
+        <div class="hero-actions animate-fade" style="animation-delay: 0.3s;">
+            <a href="#contacto" class="btn btn-primary">Solicitar Información</a
+            >
+            <a
+                href="#proyectos"
+                class="btn btn-outline"
+                style="color: white; border-color: white;">Ver Trabajos</a
+            >
+        </div>
+    </div>
+
+    <div class="hero-scroll">
+        <span></span>
+    </div>
+</section>
+
+<style>
+    .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 20px;
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        position: relative;
+    }
+
+    .hero-content {
+        max-width: 800px;
+    }
+
+    .hero-badge {
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--primary);
+    }
+
+    .hero h1 {
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        color: white;
+        margin-bottom: 24px;
+        line-height: 1.1;
+    }
+
+    .hero-description {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .hero-scroll {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .hero-scroll span {
+        display: block;
+        width: 2px;
+        height: 60px;
+        background: linear-gradient(to bottom, var(--primary), transparent);
+    }
+
+    @media (max-width: 640px) {
+        .hero-actions {
+            flex-direction: column;
+        }
+    }
+</style>
